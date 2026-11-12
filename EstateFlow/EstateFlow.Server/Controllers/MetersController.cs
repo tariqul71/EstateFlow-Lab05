@@ -1,7 +1,8 @@
-using EstateFlow.Server.Contracts.Meters;
+using EstateFlow.Application.Data;
+using EstateFlow.Application.Contracts.Meters;
 using EstateFlow.Infrastructure.Data;
 using EstateFlow.Domain;
-using EstateFlow.Server.Services;
+using EstateFlow.Application.Services;
 using FluentValidation;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,11 @@ namespace EstateFlow.Server.Controllers
     [ApiController]
     public class MetersController : ControllerBase
     {
-        private readonly EstateFlowDbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IMeterReadingService _meterReadingService;
         private readonly IValidator<SubmitMeterReadingRequest> _submitValidator;
 
-        public MetersController(EstateFlowDbContext context, 
+        public MetersController(IApplicationDbContext context, 
             IMeterReadingService meterReadingService, 
             IValidator<SubmitMeterReadingRequest> submitValidator)
         {

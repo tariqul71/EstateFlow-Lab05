@@ -1,4 +1,4 @@
-﻿using EstateFlow.Domain;
+using EstateFlow.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace EstateFlow.Application.Data;
