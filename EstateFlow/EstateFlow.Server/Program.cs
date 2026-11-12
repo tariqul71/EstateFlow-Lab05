@@ -1,3 +1,5 @@
+using EstateFlow.Application;
+using EstateFlow.Infrastructure;
 using EstateFlow.Application.Data;
 using EstateFlow.Infrastructure.Data;
 using EstateFlow.Application.Services;
@@ -17,14 +19,14 @@ builder.Services.AddOpenApi(options =>
 });
 
 
-builder.Services.AddDbContext<EstateFlowDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("EstateFlowDbConnection")));
 
-builder.Services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<EstateFlowDbContext>());
 
-builder.Services.AddValidatorsFromAssemblyContaining<EstateFlow.Application.Contracts.Expenses.CreateExpenseRequestValidator>();
 
-builder.Services.AddScoped<IMeterReadingService, MeterReadingService>();
+
+
+
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
